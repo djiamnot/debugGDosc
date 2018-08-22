@@ -8,9 +8,9 @@ In order to receive OSC messages you need to use `OSCreceiver` node. Please note
 
 For a more detailed explanation of the functionality, see the README in the _gdosc_'s root directory.
 
-Currently, `OSCreceiver` node needs to have a script attached that activates `_process() ` which is usually done by implementing a `_ready()` method and executing `set_process(true)`. See [OSCreceiver](file://OSCreceiver.gd) script, which in the scene is attached to `OSCreceiver` node.
+Currently, `OSCreceiver` node needs to have a script attached that activates `_process() ` which is usually done by implementing a `_ready()` method and executing `set_process(true)`. See [OSCreceiver](OSCreceiver.gd) script, which in the scene is attached to `OSCreceiver` node.
 
-Another node will typically subscribe to `OSCreceiver`'s `_osc_message_received` signal. In this example, `OmniLight` node subscribes to this message (the connection is made via the editor). The script attached to this node [OmniLight.gd](file://OmniLight.gd) also needs to execute `set_process(true)` *and* implement `_process(delta)` method, even if it does not do anything:
+Another node will typically subscribe to `OSCreceiver`'s `_osc_message_received` signal. In this example, `OmniLight` node subscribes to this message (the connection is made via the editor). The script attached to this node [OmniLight.gd](OmniLight.gd) also needs to execute `set_process(true)` *and* implement `_process(delta)` method, even if it does not do anything:
 
 ``` python
 func _process(delta):
@@ -33,7 +33,7 @@ This is workaround that is addressing the problem of the node needing to `proces
 
 ## Sending OSC messages
 
-See [OSCsender.gd](file://OSCsender.gd) script for an example of sending OSC message from a Godot node (`OSCsender` also inherits from `Node`). If set up an OSC receiver listening on port 28000, you will receive a message that looks like this `/from/godot sf "OSCsender" 57.367649` (this is an actual printout from liblo's _oscdump_, your output may be slightly different).
+See [OSCsender.gd](OSCsender.gd) script for an example of sending OSC message from a Godot node (`OSCsender` also inherits from `Node`). If set up an OSC receiver listening on port 28000, you will receive a message that looks like this `/from/godot sf "OSCsender" 57.367649` (this is an actual printout from liblo's _oscdump_, your output may be slightly different).
 
 Many thanks to the user _SpotlightKid_ who has reported and documented this issue in [an issue](https://github.com/djiamnot/gdosc/commit/11744aa36c59864b4490614df3a62569618cab61) and a subsequent merge request. This and other issues will be addressed in the GDNative rewrite of gdosc.
 
